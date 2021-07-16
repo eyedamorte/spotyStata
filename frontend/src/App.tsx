@@ -9,7 +9,7 @@ import './style.css'
 
 export default function App() {
 
-  const bestArtist = useSelector(getSelectedArtist)  
+  const selectedArtist = useSelector(getSelectedArtist)  
 
   return (
     <Customlayout>
@@ -19,7 +19,7 @@ export default function App() {
             <ArtistsSearch style={{width: '100%'}}/>
           </Col>
           <Col span={12}>
-            {bestArtist ? <SelectedArtist user={bestArtist}/> : null }
+            <SelectedArtist user={selectedArtist}/>
           </Col>
         </Row>
       </div>

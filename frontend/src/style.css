@@ -1,7 +1,18 @@
+.ant-layout-content {
+    margin: 0;
+    padding: 0;
+
+}
 .App{
     padding-top: 50px;
 }
 .container{
     max-width: 800px;
     margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+
+}
+.gradient{
+    background: linear-gradient(to top, #090a09 0%, #4c4d4c 36%,  #389444 100%);
 }

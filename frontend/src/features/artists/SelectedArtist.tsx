@@ -1,21 +1,33 @@
 import React, {FC} from 'react'
-import { Card } from 'antd';
-import { ArtistType } from './ArtistsTypes'
+import { Card, Skeleton } from 'antd';
+import { ArtistsStateType } from './ArtistsTypes'
 
 const { Meta } = Card;
 
 interface SelectedArtistPropsType {
-    user: ArtistType
+    user?: ArtistsStateType['selectedArtist']
 }
 
 const SelectedArtist:FC<SelectedArtistPropsType> = ({user}) => {
     return (
-        <Card
-            style={{ width: 240 }}
-            cover={<img alt="example" src={user.images[0].url} />}
-        >
-        <Meta title={user.name}/>
-        </Card>
+        <div>
+            <Card
+            style={{ width: '70%' }} 
+            cover={ <img alt="avatar" src={
+                user?.images[0] ? 
+                user.images[0].url : 
+                'https://cdn.iconscout.com/icon/premium/png-256-thumb/avatar-2084388-1747738.png'
+                }/> 
+            }
+           
+            >
+                <Skeleton loading={!user} active>
+                    <Meta 
+                        title={user?.name}
+                    />
+                </Skeleton>
+            </Card>
+        </div>
     ) 
 }
 
