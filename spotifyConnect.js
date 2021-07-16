@@ -1,9 +1,10 @@
 import fetch from 'node-fetch';
-import keys from './keys.js'
+import dotenv from 'dotenv'
 
 async function spotifyConnect(){
+    dotenv.config()
     var myHeaders = new fetch.Headers();
-    const my_clientID = Buffer.from(keys.user_key + ':' + keys.secret_key).toString('base64')
+    const my_clientID = Buffer.from(process.env.USER_KEY + ':' + process.env.SECRET_KEY).toString('base64')
 
     myHeaders.append("Authorization", 'Basic ' + my_clientID)
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded")

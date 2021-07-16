@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { ArtistType, ArtistsListType, ArtistsStateType } from './ArtistsTypes'
-import axios from "axios"
+import { instance } from "../../httpInstance"
 
 const ReducerName = 'artists'
 
@@ -13,8 +13,8 @@ const InitialState: ArtistsStateType = {
 }
 
 export const getArtistsThunk = createAsyncThunk(`${ReducerName}/getArtists`, async ({ q }: { q: string }) => { 
-  const response = await axios.get(
-    `/api/artists`, {
+  const response = await instance.get(
+    `/artists`, {
       params: {
         q: q,
         type: 'artist'

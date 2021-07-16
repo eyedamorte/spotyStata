@@ -22,6 +22,7 @@
   "homepage": "https://github.com/eyedamorte/spotify-statistic-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
     "node-fetch": "^2.6.1"
