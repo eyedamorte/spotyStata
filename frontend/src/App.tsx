@@ -3,22 +3,23 @@ import Customlayout from './features/layout/Layout'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'antd';
 import ArtistsSearch from './features/artists/ArtistsSearch';
-import { getBestArtist } from './features/artists/ArtistsSelector';
+import { getSelectedArtist } from './features/artists/ArtistsSelector';
 import SelectedArtist from './features/artists/SelectedArtist';
+import './style.css'
 
 export default function App() {
 
-  const bestArtist = useSelector(getBestArtist)  
+  const bestArtist = useSelector(getSelectedArtist)  
 
   return (
     <Customlayout>
-      <div>
-        <Row>
-          <Col span={6}>
-            <ArtistsSearch />
+      <div className='container'>
+        <Row gutter={[8, 8]}>
+          <Col span={12}>
+            <ArtistsSearch style={{width: '100%'}}/>
           </Col>
-          <Col span={6}>
-            {bestArtist ? <SelectedArtist user={bestArtist}/> : '' }
+          <Col span={12}>
+            {bestArtist ? <SelectedArtist user={bestArtist}/> : null }
           </Col>
         </Row>
       </div>

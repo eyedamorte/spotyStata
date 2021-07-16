@@ -6,10 +6,9 @@ const ReducerName = 'artists'
 
 
 const InitialState: ArtistsStateType = {
-  selectedArtist: null,
   searchedArtists: [],
   isPending: false,
-  bestResult: null
+  selectedArtist: null
 }
 
 export const getArtistsThunk = createAsyncThunk(`${ReducerName}/getArtists`, async ({ q }: { q: string }) => { 
@@ -21,22 +20,25 @@ export const getArtistsThunk = createAsyncThunk(`${ReducerName}/getArtists`, asy
       }
     }
   )
-  return response.data.artists
-  .items
+  return response.data.artists.items
 })
 
 
 export const artistsSlice = createSlice({
   name: ReducerName,
   initialState: InitialState,
-  reducers: {},
+  reducers: {
+    selectArtist: (state, action) => {
+      state.selectedArtist = state.searchedArtists.find((artist)=>{ return artist.id === action.payload }) || null
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getArtistsThunk.pending, (state, action) => {
       state.isPending = true
     })
     builder.addCase(getArtistsThunk.fulfilled, (state, action) => {
       state.searchedArtists = action.payload
-      state.bestResult = action.payload.reduce((acc:any, curr:any) => acc.followers.total > curr.followers.total ? acc : curr)
+      state.selectedArtist = action.payload.reduce((acc:any, curr:any) => acc.followers.total > curr.followers.total ? acc : curr)
       state.isPending = false
     })
     builder.addCase(getArtistsThunk.rejected, (state, action) => {
@@ -45,5 +47,6 @@ export const artistsSlice = createSlice({
   }
 })
 
+export const { selectArtist } = artistsSlice.actions
 
 export default artistsSlice.reducer

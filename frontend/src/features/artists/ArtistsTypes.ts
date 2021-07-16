@@ -32,5 +32,4 @@ export type ArtistsStateType = {
     searchedArtists: ArtistType[],
     isPending: boolean,
     selectedArtist: ArtistType | null,
-    bestResult: ArtistType | null,
 }

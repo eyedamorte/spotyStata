@@ -8,8 +8,8 @@ export const getArtistsList = createSelector<RootReducerType, ArtistsStateType['
     value => value
 )
 
-export const getBestArtist = createSelector<RootReducerType, ArtistsStateType['bestResult'], ArtistsStateType['bestResult']>(
-    state => state.artists.bestResult,
+export const getSelectedArtist = createSelector<RootReducerType, ArtistsStateType['selectedArtist'], ArtistsStateType['selectedArtist']>(
+    state => state.artists.selectedArtist,
     value => value
 )
 

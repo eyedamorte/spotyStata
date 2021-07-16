@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import { Select } from 'antd';
 import useDebounce from '../hooks/useDebounce'
 import { useSelector, useDispatch } from 'react-redux'
 import { getArtistsList } from './ArtistsSelector';
-import { getArtistsThunk } from './ArtistsSlice';
+import { getArtistsThunk, selectArtist } from './ArtistsSlice';
 import { Avatar } from 'antd';
 
 const { Option } = Select;
 
-const  ArtistsSearch = () => {
+interface ArtistsSearchPropsType {
+    style?: React.CSSProperties,
+}
+
+const  ArtistsSearch:FC<ArtistsSearchPropsType> = ({style}) => {
     const dispatch = useDispatch()
 
     const [value, setValue] = useState<string>('')
@@ -18,7 +22,7 @@ const  ArtistsSearch = () => {
     const options = artistsList.map(d => <Option value={d.id} key={d.id}><Avatar shape="square" src={d.images[0]?.url}/> {d.name}</Option>);
 
     const handleChange = (value: string) => {
-        console.log(value);
+        dispatch(selectArtist(value))
     }
 
     const handleSearch = (value: string) => {
@@ -29,7 +33,6 @@ const  ArtistsSearch = () => {
         if(debouncedValue.length){
             dispatch(getArtistsThunk({ q: debouncedValue}))
         }
-
     }, [debouncedValue])
 
     return (
@@ -37,7 +40,7 @@ const  ArtistsSearch = () => {
             showSearch
             value={value}
             placeholder={'placeholder'}
-            style={{width: '400px'}}
+            style={style}
             defaultActiveFirstOption={false}
             showArrow={false}
             filterOption={false}
