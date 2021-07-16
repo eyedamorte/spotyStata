@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { Card } from 'antd';
 import { ArtistType } from './ArtistsTypes'
 
 const { Meta } = Card;
 
+interface SelectedArtistPropsType {
+    user: ArtistType
+}
 
-const SelectedArtist: React.FC<ArtistType> = (user) => {
+const SelectedArtist:FC<SelectedArtistPropsType> = ({user}) => {
     return (
         <Card
             style={{ width: 240 }}

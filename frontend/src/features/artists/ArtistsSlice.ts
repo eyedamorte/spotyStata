@@ -36,7 +36,7 @@ export const artistsSlice = createSlice({
     })
     builder.addCase(getArtistsThunk.fulfilled, (state, action) => {
       state.searchedArtists = action.payload
-      state.bestResult = action.payload[0]
+      state.bestResult = action.payload.reduce((acc:any, curr:any) => acc.followers.total > curr.followers.total ? acc : curr)
       state.isPending = false
     })
     builder.addCase(getArtistsThunk.rejected, (state, action) => {
