@@ -1,6 +1,6 @@
 import getRequest from './getRequest.js';
 
-async function spotifyConnect(req, key){
+async function artists(req, key){
     console.log(req.query);
     var url = new URL("https://api.spotify.com/v1/search"),
         params = req.query
@@ -12,4 +12,4 @@ async function spotifyConnect(req, key){
 
 }
 
-export default spotifyConnect
+export default artists

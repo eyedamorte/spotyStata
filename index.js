@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import spotifyConnect from './spotifyConnect.js'
 import artists from './artists.js'
+import releases from './releases.js'
 import path from 'path'
 
 const PORT = process.env.PORT || 5000
@@ -27,6 +28,10 @@ app.use(cors())
 
 app.get('/api/artists', (req, res) => {
     artists(req, Key).then(data => res.send(data))
+})
+
+app.get('/api/releases', (req, res) => {
+    releases(req, Key).then(data => res.send(data))
 })
 
 app.get('*', (req, res) => {

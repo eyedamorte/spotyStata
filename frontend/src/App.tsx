@@ -1,15 +1,24 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react'
 import Customlayout from './features/layout/Layout'
-import { useSelector } from 'react-redux'
-import { Row, Col } from 'antd';
-import ArtistsSearch from './features/artists/ArtistsSearch';
-import { getSelectedArtist } from './features/artists/ArtistsSelector';
-import SelectedArtist from './features/artists/SelectedArtist';
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col } from 'antd'
+import ArtistsSearch from './features/artists/ArtistsSearch'
+import { getReleasesThunk } from './features/releases/ReleasesSlice'
+import { getSelectedArtist } from './features/artists/ArtistsSelector'
+import SelectedArtist from './features/artists/SelectedArtist'
 import './style.css'
 
 export default function App() {
+  const dispatch = useDispatch()
 
   const selectedArtist = useSelector(getSelectedArtist)  
+
+  useEffect(() => {
+    if(selectedArtist){
+      dispatch(getReleasesThunk({ id: selectedArtist.id}))
+
+    }
+  }, [selectedArtist])
 
   return (
     <Customlayout>
