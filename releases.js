@@ -18,18 +18,18 @@ async function getReleases(req, key){
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
             const tracksInfo = await getRequest(url, key)
+            let tracksds = tracksInfo.items.map(track => track.id);
             
-            await Promise.all(
-                tracksInfo.items.map(async (trackInfo) => {
-                    const url = new URL("https://api.spotify.com/v1/audio-features/"+ trackInfo.id )
+            const audioFeaturesUrl = new URL("https://api.spotify.com/v1/audio-features")
 
-                    const params = { id: trackInfo.id }
+            const audioFeaturesParams = { ids: tracksds.join() }
 
-                    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+            Object.keys(audioFeaturesParams).forEach(key => audioFeaturesUrl.searchParams.append(key, audioFeaturesParams[key]))
 
-                    trackInfo.audioFeatures = await getRequest(url, key)
-                })
-            )
+            const audioFeatures = await getRequest(audioFeaturesUrl, key)
+            tracksInfo.items.map((track)=>{
+                track.audioFeatures = audioFeatures.audio_features.find((feature)=>{return feature.id === track.id })
+            })
 
             return { ...ReleaseInfo, tracks: tracksInfo.items }
         })
