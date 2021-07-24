@@ -48,7 +48,7 @@ export type Track = {
     track_number: number,
     type: string,
     uri: string,
-    audio_features: AudioFeatures
+    audioFeatures: AudioFeatures
 }
 
 export type Image = {

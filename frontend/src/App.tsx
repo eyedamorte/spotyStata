@@ -5,18 +5,22 @@ import { Row, Col } from 'antd'
 import ArtistsSearch from './features/artists/ArtistsSearch'
 import { getReleasesThunk } from './features/releases/ReleasesSlice'
 import { getSelectedArtist } from './features/artists/ArtistsSelector'
-import SelectedArtist from './features/artists/SelectedArtist'
+import { getReleases } from './features/releases/ReleaseSelector'
+import SelectedArtistCard from './features/selectedArtistCard/SelectedArtistCard'
+import ArtistRate from './features/artistRate/ArtistRate'
+
 import './style.css'
 
 export default function App() {
   const dispatch = useDispatch()
 
   const selectedArtist = useSelector(getSelectedArtist)  
+  const releases = useSelector(getReleases)  
+
 
   useEffect(() => {
     if(selectedArtist){
       dispatch(getReleasesThunk({ id: selectedArtist.id}))
-
     }
   }, [selectedArtist])
 
@@ -26,9 +30,10 @@ export default function App() {
         <Row gutter={[8, 8]}>
           <Col span={12}>
             <ArtistsSearch style={{width: '100%'}}/>
+            <ArtistRate releases={releases}/>
           </Col>
           <Col span={12}>
-            <SelectedArtist user={selectedArtist}/>
+            <SelectedArtistCard user={selectedArtist}/>
           </Col>
         </Row>
       </div>

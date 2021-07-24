@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import { Card, Skeleton } from 'antd';
-import { ArtistsStateType } from './ArtistsTypes'
+import { ArtistsStateType } from '../artists/ArtistsTypes'
 
 const { Meta } = Card;
 
@@ -8,7 +8,7 @@ interface SelectedArtistPropsType {
     user?: ArtistsStateType['selectedArtist']
 }
 
-const SelectedArtist:FC<SelectedArtistPropsType> = ({user}) => {
+const SelectedArtistCard:FC<SelectedArtistPropsType> = ({user}) => {
     return (
         <div>
             <Card
@@ -31,4 +31,4 @@ const SelectedArtist:FC<SelectedArtistPropsType> = ({user}) => {
     ) 
 }
 
-export default SelectedArtist
+export default SelectedArtistCard

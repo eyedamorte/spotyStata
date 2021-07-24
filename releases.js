@@ -1,5 +1,7 @@
 import getRequest from './getRequest.js';
 
+
+// here while the shit code, if it's not lazy, I'll rewrite it in typescript
 async function getReleases(req, key){
     const url = new URL("https://api.spotify.com/v1/artists/" + req.query.id + "/albums")
     
@@ -27,9 +29,11 @@ async function getReleases(req, key){
             Object.keys(audioFeaturesParams).forEach(key => audioFeaturesUrl.searchParams.append(key, audioFeaturesParams[key]))
 
             const audioFeatures = await getRequest(audioFeaturesUrl, key)
-            tracksInfo.items.map((track)=>{
-                track.audioFeatures = audioFeatures.audio_features.find((feature)=>{return feature.id === track.id })
-            })
+            if(tracksInfo.items.length)
+                tracksInfo.items.map((track)=>{
+                    if(audioFeatures.audio_features.length)
+                        track.audioFeatures = audioFeatures.audio_features.find((feature)=>{return (feature?.id === track?.id) | null })
+                })
 
             return { ...ReleaseInfo, tracks: tracksInfo.items }
         })
