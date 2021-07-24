@@ -15,7 +15,12 @@ const CustomLayout: FC = ({children}) => {
                 {children}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Eyedamorte: <a href="https://github.com/eyedamorte/spotyStata">SPOTIFY STATISTIC APP</a></Footer>
+          <Footer style={{ textAlign: 'center' }}>
+            Eyedamorte: <a href="https://github.com/eyedamorte/spotyStata">SPOTIFY STATISTIC APP</a>
+            <p>
+              <a href="https://www.youtube.com/channel/UCWHB5avOYQoa3KSfaS-RYzA">I was inspired by her</a>
+            </p>
+          </Footer>
         </Layout>
       </Layout>
     )
