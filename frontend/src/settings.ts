@@ -1,4 +1,4 @@
 export default {
-    defaultQuery: 'artist',
-    apiKey: 'YOUR API KEY'
-}
+  defaultQuery: "artist",
+  apiKey: "YOUR API KEY",
+};
