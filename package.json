@@ -1,6 +1,9 @@
 {
   "name": "spotify-statistic-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "description": "spotify-statistic-backend",
   "main": "index.js",
   "type": "module",
