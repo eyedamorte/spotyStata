@@ -37,11 +37,7 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
         enabled: true,
         style: {
           fontWeight: "bold",
-          color:
-            // theme
-            (Highcharts.defaultOptions.title.style &&
-              Highcharts.defaultOptions.title.style.color) ||
-            "gray",
+          color: "gray",
         },
       },
     },
@@ -51,8 +47,7 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
       verticalAlign: "top",
       y: 25,
       floating: true,
-      backgroundColor:
-        Highcharts.defaultOptions.legend.backgroundColor || "white",
+      backgroundColor: "white",
       borderColor: "#CCC",
       borderWidth: 1,
       shadow: false,
@@ -72,18 +67,22 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
     series: [
       {
         name: "EP",
+        type: 'column',
         data: [5, 3, 4, 7, 4],
       },
       {
         name: "FEATURE",
+        type: 'column',
         data: [3, 2, 3, 2, 1],
       },
       {
         name: "LP",
+        type: 'column',
         data: [3, 4, 4, 2, 5],
       },
       {
         name: "SINGLE",
+        type: 'column',
         data: [1, 2, 4, 2, 1],
       },
     ],
@@ -94,19 +93,23 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
       setChartOptions({
         series: [
           {
+            type: 'column',
             name: "EP",
             data: [5, 3, 4, 7, 4],
           },
           {
             name: "FEATURE",
+            type: 'column',
             data: [2, 2, 3, 2, 1],
           },
           {
             name: "LP",
+            type: 'column',
             data: [3, 4, 4, 2, 5],
           },
           {
             name: "SINGLE",
+            type: 'column',
             data: [1, 2, 4, 2, 1],
           },
         ]
