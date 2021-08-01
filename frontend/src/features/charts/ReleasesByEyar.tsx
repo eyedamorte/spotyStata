@@ -1,59 +1,118 @@
 import React, { useEffect, useState, FC } from "react";
 
-import Highcharts from "highcharts";
+import Highcharts, { color } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import type {Options as ChartOptionsType} from 'highcharts'
+import type { Options as ChartOptionsType } from "highcharts";
 import { ReleaseType } from "../releases/ReleasesTypes";
 
-import featsService from '../../services/featsService'
+import featsService from "../../services/featsService";
 
 interface FeatsPropsType {
-  releases: ReleaseType[]
-  artistId?: string
+  releases: ReleaseType[];
+  artistId?: string;
 }
 
-const ReleasesByYear: FC<FeatsPropsType> = ({releases, artistId}) => {
-  
+const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
   const [ChartOptions, setChartOptions] = useState<ChartOptionsType>({
     chart: {
-        backgroundColor: '#f0f2f5'
-    },
-    title: {
-      text: "FEATS",
+      type: "column",
+      backgroundColor: '#f0f2f5'
     },
     credits: {
-        enabled: false
+      enabled: false
     },
-    
-    
-    series: [{
-        type: 'pie',
-        name: 'number of feats',
-        innerSize: '60%',
-        
-        data: [
-          ['Artist 1', 6],
-          ['Artist 2', 5],
-          ['Artist 3', 2],
-        ],
+    title: {
+      text: "RELEASES BY EYAR",
     },
-  ]    
+    xAxis: {
+      categories: ["2017", "2018", "2019", "2020", "2021"],
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Total fruit consumption",
+      },
+      stackLabels: {
+        enabled: true,
+        style: {
+          fontWeight: "bold",
+          color:
+            // theme
+            (Highcharts.defaultOptions.title.style &&
+              Highcharts.defaultOptions.title.style.color) ||
+            "gray",
+        },
+      },
+    },
+    legend: {
+      align: "right",
+      x: -30,
+      verticalAlign: "top",
+      y: 25,
+      floating: true,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor || "white",
+      borderColor: "#CCC",
+      borderWidth: 1,
+      shadow: false,
+    },
+    tooltip: {
+      headerFormat: "<b>{point.x}</b><br/>",
+      pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}",
+    },
+    plotOptions: {
+      column: {
+        stacking: "normal",
+        dataLabels: {
+          enabled: true,
+        },
+      },
+    },
+    series: [
+      {
+        name: "EP",
+        data: [5, 3, 4, 7, 4],
+      },
+      {
+        name: "FEATURE",
+        data: [2, 2, 3, 2, 1],
+      },
+      {
+        name: "LP",
+        data: [3, 4, 4, 2, 5],
+      },
+      {
+        name: "SINGLE",
+        data: [1, 2, 4, 2, 1],
+      },
+    ],
   });
 
   useEffect(() => {
-    if(artistId){
+    if (artistId) {
       setChartOptions({
-        series: [{
-          type: 'pie',
-          name: 'number of feats',
-          innerSize: '60%',
-          
-          data: featsService(releases, artistId),
-        }] 
-      })
+        series: [
+          {
+            name: "EP",
+            data: [5, 3, 4, 7, 4],
+          },
+          {
+            name: "FEATURE",
+            data: [2, 2, 3, 2, 1],
+          },
+          {
+            name: "LP",
+            data: [3, 4, 4, 2, 5],
+          },
+          {
+            name: "SINGLE",
+            data: [1, 2, 4, 2, 1],
+          },
+        ]
+      });
     }
-  }, [releases])
+  }, [releases]);
 
   return (
     <div>

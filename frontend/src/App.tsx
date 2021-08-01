@@ -12,6 +12,7 @@ import ArtistRate from "./features/artistRate/ArtistRate";
 import FeatsChart from "./features/charts/Feats";
 
 import "./style.css";
+import ReleasesByYear from "./features/charts/ReleasesByEyar";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -27,10 +28,10 @@ export default function App() {
 
   return (
     <Customlayout>
-      <div className="container">
+      <div className="container ">
         <Row gutter={[8, 8]}>
           <Col span={14}>
-            <ArtistsSearch style={{ width: "100%"}} />
+            <ArtistsSearch style={{ width: "100%" }} />
             <ArtistRate releases={releases} />
           </Col>
           <Col span={10}>
@@ -38,7 +39,16 @@ export default function App() {
           </Col>
         </Row>
         <div>
-        <FeatsChart releases={releases} artistId={selectedArtist?.name}/>
+          <div>
+          <ReleasesByYear
+              releases={releases}
+              artistId={selectedArtist?.name}
+            />
+          </div>
+
+          <div style={{marginTop: 40}}>
+          <FeatsChart releases={releases} artistId={selectedArtist?.name} />
+          </div>
         </div>
       </div>
     </Customlayout>

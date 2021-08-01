@@ -12,7 +12,7 @@ const SelectedArtistCard: FC<SelectedArtistPropsType> = ({ user }) => {
   return (
     <div>
       <Card
-        style={{ width: "70%" }}
+        style={{ width: "90%" }}
         cover={
           <img
             alt="avatar"
