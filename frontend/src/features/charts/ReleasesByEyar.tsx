@@ -76,7 +76,7 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
       },
       {
         name: "FEATURE",
-        data: [2, 2, 3, 2, 1],
+        data: [3, 2, 3, 2, 1],
       },
       {
         name: "LP",
