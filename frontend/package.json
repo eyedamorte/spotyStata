@@ -2,7 +2,7 @@
   "name": "my-react-app",
   "version": "0.0.0",
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "proxy": "http://localhost:5000",
   "scripts": {
