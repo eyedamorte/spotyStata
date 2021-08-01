@@ -10,7 +10,7 @@ const app = express();
 
 const __dirname = path.resolve(path.dirname(""));
 
-app.use(express.static(path.join(__dirname, "frontend/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 var Key = null;
 
@@ -33,7 +33,7 @@ app.get("/api/releases", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname + "../frontend/dist/index.html"));
 });
 
 async function startApp() {
