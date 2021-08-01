@@ -5,7 +5,7 @@ import artists from "./artists.js";
 import releases from "./releases.js";
 import path from "path";
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6100;
 const app = express();
 
 const __dirname = path.resolve(path.dirname(""));

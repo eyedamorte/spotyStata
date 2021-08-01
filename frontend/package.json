@@ -4,7 +4,7 @@
   "engines": {
     "node": "14.x"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:6100",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
