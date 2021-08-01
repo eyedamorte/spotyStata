@@ -6,7 +6,6 @@
   },
   "proxy": "http://localhost:5000",
   "scripts": {
-    "tsc": "tsc",
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview"
