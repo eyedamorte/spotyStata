@@ -15,8 +15,8 @@ interface ArtistsSearchPropsType {
 const ArtistsSearch: FC<ArtistsSearchPropsType> = ({ style }) => {
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState<string>("");
-  const debouncedValue = useDebounce<string>(value, 500);
+  const [value, setValue] = useState<string | undefined>(undefined);
+  const debouncedValue = useDebounce<string | undefined>(value, 500);
   const artistsList = useSelector(getArtistsList);
 
   const options = artistsList.map((d) => (
@@ -34,7 +34,7 @@ const ArtistsSearch: FC<ArtistsSearchPropsType> = ({ style }) => {
   };
 
   useEffect(() => {
-    if (debouncedValue.length) {
+    if (debouncedValue?.length) {
       dispatch(getArtistsThunk({ q: debouncedValue }));
     }
   }, [debouncedValue]);
@@ -42,8 +42,8 @@ const ArtistsSearch: FC<ArtistsSearchPropsType> = ({ style }) => {
   return (
     <Select
       showSearch
+      placeholder="Start typing artist name"
       value={value}
-      placeholder={"placeholder"}
       style={style}
       defaultActiveFirstOption={false}
       showArrow={false}

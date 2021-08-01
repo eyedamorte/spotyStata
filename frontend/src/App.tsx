@@ -9,6 +9,8 @@ import { getReleases } from "./features/releases/ReleaseSelector";
 import SelectedArtistCard from "./features/selectedArtistCard/SelectedArtistCard";
 import ArtistRate from "./features/artistRate/ArtistRate";
 
+import FeatsChart from "./features/charts/Feats";
+
 import "./style.css";
 
 export default function App() {
@@ -27,14 +29,17 @@ export default function App() {
     <Customlayout>
       <div className="container">
         <Row gutter={[8, 8]}>
-          <Col span={12}>
-            <ArtistsSearch style={{ width: "100%" }} />
+          <Col span={14}>
+            <ArtistsSearch style={{ width: "100%"}} />
             <ArtistRate releases={releases} />
           </Col>
-          <Col span={12}>
+          <Col span={10}>
             <SelectedArtistCard user={selectedArtist} />
           </Col>
         </Row>
+        <div>
+        <FeatsChart releases={releases} artistId={selectedArtist?.name}/>
+        </div>
       </div>
     </Customlayout>
   );

@@ -29,10 +29,10 @@ const ArtistRate: FC<ArtistRatePropsType> = ({ releases }) => {
     if (releases) {
       let features = releases
         .map((release) => {
-          return release.tracks.map((track) => track.audioFeatures);
+          return release.tracks.map((track) => track.audioFeatures).filter((featuers) => {return featuers});
         })
         .flat();
-
+      
       setAcousticness(
         getAverage(features.map((person) => person.acousticness)) || 0
       );
@@ -49,6 +49,7 @@ const ArtistRate: FC<ArtistRatePropsType> = ({ releases }) => {
 
   return (
     <div style={{ margin: 20, padding: 20, backgroundColor: "white" }}>
+      <h1>AUDIO FEATURES RATE</h1>
       <Form layout={"vertical"}>
         <Form.Item
           tooltip={{
