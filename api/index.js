@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import spotifyConnect from "./spotifyConnect.js";
+import spotifyConnect from "../spotifyConnect.js";
 import artists from "./artists.js";
-import releases from "./releases.js";
+import releases from "../releases.js";
 import path from "path";
 
 const PORT = process.env.PORT || 6100;

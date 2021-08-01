@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "cd frontend && npm install && npm run build"
+    "build": "npm run start && cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "typescript": "^4.3.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
     "node-fetch": "^2.6.1"
