@@ -5,7 +5,7 @@
     "node": "14.x"
   },
   "description": "spotify-statistic-backend",
-  "main": "./api/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
