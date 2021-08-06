@@ -1,12 +1,13 @@
 export type ReleaseType = {
   name: string;
+  artists: {}[]
   id: string;
   images: Image;
   href: string;
   release_date: string;
   release_date_precision: string;
   total_tracks: number;
-  type: string;
+  album_type: string;
   tracks: Track[];
 };
 

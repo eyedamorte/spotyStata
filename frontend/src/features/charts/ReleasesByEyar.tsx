@@ -6,7 +6,7 @@ import HighchartsReact from "highcharts-react-official";
 import type { Options as ChartOptionsType } from "highcharts";
 import { ReleaseType } from "../releases/ReleasesTypes";
 
-import featsService from "../../services/featsService";
+import { getReleasesByYear, getReleasesYears } from "../../services/releasesByEyarService"
 
 interface FeatsPropsType {
   releases: ReleaseType[];
@@ -26,7 +26,7 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
       text: "RELEASES BY EYAR",
     },
     xAxis: {
-      categories: ["2017", "2018", "2019", "2020", "2021"],
+      categories: getReleasesYears(releases),
     },
     yAxis: {
       min: 0,
@@ -66,7 +66,7 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
     },
     series: [
       {
-        name: "EP",
+        name: "EP & LP",
         type: 'column',
         data: [5, 3, 4, 7, 4],
       },
@@ -74,11 +74,6 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
         name: "FEATURE",
         type: 'column',
         data: [3, 2, 3, 2, 1],
-      },
-      {
-        name: "LP",
-        type: 'column',
-        data: [3, 4, 4, 2, 5],
       },
       {
         name: "SINGLE",
@@ -90,29 +85,13 @@ const ReleasesByYear: FC<FeatsPropsType> = ({ releases, artistId }) => {
 
   useEffect(() => {
     if (artistId) {
+      console.log(getReleasesByYear(releases));
+      
       setChartOptions({
-        series: [
-          {
-            name: "EP",
-            type: 'column',
-            data: [5, 3, 4, 7, 4],
-          },
-          {
-            name: "FEATURE",
-            type: 'column',
-            data: [2, 2, 3, 2, 1],
-          },
-          {
-            name: "LP",
-            type: 'column',
-            data: [3, 4, 4, 2, 5],
-          },
-          {
-            name: "SINGLE",
-            type: 'column',
-            data: [1, 2, 4, 2, 1],
-          },
-        ]
+        xAxis: {
+          categories: getReleasesYears(releases),
+        },
+        series: getReleasesByYear(releases)
       });
     }
   }, [releases]);
