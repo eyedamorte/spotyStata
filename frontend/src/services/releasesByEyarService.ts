@@ -8,32 +8,53 @@ export function getReleasesYears(releases: ReleaseType[]): string[] {
   const years = releases.map((release) => {
     return new Date(release.release_date).getFullYear();
   });
-  return Array.apply(null, { length: Math.max(...years) + 1 })
-    .map(String.call, String)
-    .slice(Math.min(...years));
+  let arrayOfYears: string[] = [];
+  for (let i = Math.min(...years); i < Math.max(...years); i++) {
+    arrayOfYears.push(i.toString());
+  }
+  return arrayOfYears;
 }
 
 export function getReleasesByYear(
-  releases: ReleaseType[],
+  releases: ReleaseType[]
 ): SeriesOptionsType[] {
-    console.log(getReleasesYears(releases));
-    
+  console.log(getReleasesYears(releases));
+
   return typesOfReleases.map((type) => {
     return {
       type: "column",
       name: type,
       data: getReleasesYears(releases).map((year) => {
-        switch(type){
-            case "ALBUM":             
-                return releases.filter((release)=>{return new Date(release.release_date).getFullYear() === parseInt(year) && release.album_type == 'album'}).length
-            case "FEATURE": 
-                return releases.filter((release)=>{return new Date(release.release_date).getFullYear() === parseInt(year) && (release.album_type == 'single' && release.artists.length > 1)}).length
-            case "SINGLE": 
-                return releases.filter((release)=>{return new Date(release.release_date).getFullYear() === parseInt(year) && (release.album_type == 'single' && release.artists.length === 1)}).length
-            default: 
-                return year
+        switch (type) {
+          case "ALBUM":
+            return releases.filter((release) => {
+              return (
+                new Date(release.release_date).getFullYear() ===
+                  parseInt(year) && release.album_type == "album"
+              );
+            }).length || null;
+          case "FEATURE":
+            return releases.filter((release) => {
+              return (
+                new Date(release.release_date).getFullYear() ===
+                  parseInt(year) &&
+                release.album_type == "single" &&
+                release.artists.length > 1
+              );
+            }).length || null;
+          case "SINGLE":
+            return releases.filter((release) => {
+              return (
+                new Date(release.release_date).getFullYear() ===
+                  parseInt(year) &&
+                release.album_type == "single" &&
+                release.artists.length === 1
+              );
+            }).length || null;
+          default:
+            return year;
         }
-      })
+      }),
     };
   });
 }
